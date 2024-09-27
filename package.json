@@ -1,0 +1,27 @@
+{
+  "name": "modulo-4-evaluacion-final-bpw-mvictoriadoll",
+  "version": "1.0.0",
+  "description": "API para gestionar una entidad con operaciones CRUD usando Express.js, Node.js y MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adalab/modulo-4-evaluacion-final-bpw-MVictoriaDoll.git"
+  },
+  "keywords": [
+    "API",
+    "Express",
+    "Node.js",
+    "MySQL",
+    "CRUD",
+    "Evaluación"
+  ],
+  "author": "Victoria Doll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adalab/modulo-4-evaluacion-final-bpw-MVictoriaDoll/issues"
+  },
+  "homepage": "https://github.com/Adalab/modulo-4-evaluacion-final-bpw-MVictoriaDoll#readme"
+}
