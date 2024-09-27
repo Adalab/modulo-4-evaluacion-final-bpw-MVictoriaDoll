@@ -44,16 +44,37 @@ app.listen(port, () => {
     await conn.close();
   });
 
-  app.post ('api/friends', async (req,res) => {
+  app.post ('/api/friends', async (req,res) => {
 
+    console.log(req.body);
+    const conn = await getConnection();
     if (!conn) {
         res.status(500).json({ success: false, error: "Error con la conexion." });
         return;
       }
 
+      if( !req.body.nombre ) {
+        res.json({success: false, error: 'Falta el nombre'});
+        return;
+      }
+      if( !req.body.actor ) {
+        res.json({success: false, error: 'Falta el actor'});
+        return;
+      }
+
       const [results] = await conn.execute (`
-        INSERT PersonajesFriends (nombre, actor, ocupación, edad)
-        VALUES ('Rachel Green', '', '','');`);
+        INSERT friends.PersonajesFriends (nombre, actor, ocupación, edad)
+        VALUES (?,?,?,?);`,
+        [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad]);
+
+     console.log(results);   
+      
+     if( results.affectedRows === 1 ) {
+        res.json({success: true, id: results.insertId});
+      }
+      else {
+        res.json({success: false, error: 'No insertado'});
+      }      
 
       await conn.close();
 
