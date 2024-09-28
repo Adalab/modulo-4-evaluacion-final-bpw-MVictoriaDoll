@@ -116,5 +116,18 @@ app.listen(port, () => {
       return;
     }
 
+    const [results] = await conn.execute (`
+        DELETE FROM friends.PersonajesFriends
+        WHERE \`idPersonajes Friends\`=?`,
+        [req.params.id])
 
+    console.log(results);
+    if( results.affectedRows === 0 ) {
+        res.json({success: false});
+      }
+      else {
+        res.json({success: true});
+      }
+
+    await conn.close();
   })   
