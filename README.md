@@ -22,25 +22,23 @@ Ruta: /api/friends
 Descripción: Inserta un nuevo personaje.
 Cuerpo de la solicitud (JSON):
 {
-  "nombre": "",
-  "actor": "",
-  "ocupación": "",
-  "edad": ""
+  "nombre": "Nombre del nuevo personaje",
+  "ocupación": "Ocupación del nuevo personaje",
+  "edad": "Edad del nuevo personaje"
 }
 
 3. Actualizar un personaje existente
 Método: PUT
 Ruta: /api/friends/:id
-Descripción: Actualiza la información de un personaje existente.
+Descripción: Actualiza la información de uno o más campos del personaje existente. 
 Parámetros:
 id: ID del personaje a actualizar.
 Cuerpo de la solicitud (JSON):
 
 {
-  "nombre": "",
-  "actor": "",
-  "ocupación": "",
-  "edad": ""
+  "nombre": "Cambios en el nombre del personaje existente",
+  "ocupación": "Cambios en la ocupación del personaje existente"
+  "edad": "Cambios en la edad del personaje existente"
 }
 4. Eliminar un personaje
 Método: DELETE
