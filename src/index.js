@@ -80,5 +80,41 @@ app.listen(port, () => {
 
   })
 
+  app.put ('/api/friends/:id', async (req, res) =>{
+    console.log(req.params, req.body)
+    const conn = await getConnection();
+    if (!conn) {
+      res.status(500).json({ success: false, error: "Error con la conexion." });
+      return;
+    }
+
+    const [results] = await conn.execute (`
+        UPDATE friends.PersonajesFriends
+        SET nombre=?, actor=?, ocupación=?, edad=?
+        WHERE \`idPersonajes Friends\`=?`,
+        [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad, req.params.id])
+
+    console.log(results);
+    if( results.changedRows === 0 ) {
+        res.json({success: false});
+      }
+      else {
+        res.json({success: true});
+      }
+    await conn.close();
+
+
+  })
+
+
+
   
-    
+  app.delete ('/api/friends/:id', async (req, res) =>{
+    const conn = await getConnection();
+    if (!conn) {
+      res.status(500).json({ success: false, error: "Error con la conexion." });
+      return;
+    }
+
+
+  })   
