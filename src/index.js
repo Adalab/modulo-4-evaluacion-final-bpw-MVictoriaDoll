@@ -22,14 +22,14 @@ app.listen(port, () => {
       return;
     }
 
-    let selectStmt = 'SELECT * FROM friends.PersonajesFriends PF';
+    let selectStmt = 'SELECT * FROM PersonajesFriends PF';
     const values = [];
 
     if ( req.query.incluir_actor && req.query.incluir_actor === 'true') {
         selectStmt = selectStmt = `
         SELECT PF.*, AF.nacionalidad 
-        FROM friends.PersonajesFriends PF 
-        JOIN friends.ActoresFriends AF ON (PF.idActoresFriends = AF.idActoresFriends)`;    
+        FROM PersonajesFriends PF 
+        JOIN ActoresFriends AF ON (PF.idActoresFriends = AF.idActoresFriends)`;    
     }
 
     if( req.query.search ) {
@@ -63,7 +63,7 @@ app.listen(port, () => {
       }
 
       const [results] = await conn.execute (`
-        INSERT friends.PersonajesFriends (nombre, actor, ocupación, edad)
+        INSERT PersonajesFriends (nombre, actor, ocupación, edad)
         VALUES (?,?,?,?);`,
         [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad]);
 
@@ -89,9 +89,9 @@ app.listen(port, () => {
     }
 
     const [results] = await conn.execute (`
-        UPDATE friends.PersonajesFriends
+        UPDATE PersonajesFriends
         SET nombre=?, actor=?, ocupación=?, edad=?
-        WHERE \`idPersonajes Friends\`=?`,
+        WHERE idPersonajesFriends =?`,
         [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad, req.params.id])
 
     console.log(results);
@@ -117,8 +117,8 @@ app.listen(port, () => {
     }
 
     const [results] = await conn.execute (`
-        DELETE FROM friends.PersonajesFriends
-        WHERE \`idPersonajes Friends\`=?`,
+        DELETE FROM PersonajesFriends
+        WHERE idPersonajesFriends =?`,
         [req.params.id])
 
     console.log(results);
