@@ -27,7 +27,7 @@ app.listen(port, () => {
 
     if ( req.query.incluir_actor && req.query.incluir_actor === 'true') {
         selectStmt = selectStmt = `
-        SELECT PF.*, AF.nacionalidad 
+        SELECT PF.*, AF.nombreActor 
         FROM PersonajesFriends PF 
         JOIN ActoresFriends AF ON (PF.idActoresFriends = AF.idActoresFriends)`;    
     }

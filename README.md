@@ -13,7 +13,7 @@ Método: GET
 Ruta: /api/friends
 Descripción: Obtiene una lista de todos los personajes.
 Parámetros opcionales:
-incluir_actor: Incluye la nacionalidad del actor.
+incluir_actor: Incluye el nombre del actor.
 search: Filtra los personajes por nombre.
 
 2. Crear un nuevo personaje
