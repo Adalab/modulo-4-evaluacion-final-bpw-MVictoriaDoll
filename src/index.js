@@ -57,15 +57,11 @@ app.listen(port, () => {
         res.json({success: false, error: 'Falta el nombre'});
         return;
       }
-      if( !req.body.actor ) {
-        res.json({success: false, error: 'Falta el actor'});
-        return;
-      }
 
       const [results] = await conn.execute (`
-        INSERT PersonajesFriends (nombre, actor, ocupación, edad)
-        VALUES (?,?,?,?);`,
-        [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad]);
+        INSERT PersonajesFriends (nombre, ocupación, edad)
+        VALUES (?,?,?);`,
+        [req.body.nombre, req.body.ocupación, req.body.edad]);
 
      console.log(results);   
       
@@ -90,9 +86,9 @@ app.listen(port, () => {
 
     const [results] = await conn.execute (`
         UPDATE PersonajesFriends
-        SET nombre=?, actor=?, ocupación=?, edad=?
+        SET nombre=?, ocupación=?, edad=?
         WHERE idPersonajesFriends =?`,
-        [req.body.nombre, req.body.actor, req.body.ocupación, req.body.edad, req.params.id])
+        [req.body.nombre, req.body.ocupación, req.body.edad, req.params.id])
 
     console.log(results);
     if( results.changedRows === 0 ) {
